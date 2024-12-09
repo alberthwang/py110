@@ -24,6 +24,8 @@ def swap(sentence):
   for word in sentence:
     print(word)
     swapped_word = word[len(word)-1] + word[1:len(word)-1] + word[0]
-    print(swapped_word)
+    words.append(swapped_word)
+    
+  return ' '.join(words)
     
 print(swap("this is abe abcde"))
