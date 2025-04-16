@@ -33,8 +33,18 @@ def prompt(message):
     print(f'===> {message}')
 
 def player_chooses_square(board):
-    prompt('Choose a square (1-9):')
-    square = input()
+    # valid spots would be in this list, if list at index = empty space
+    empty_squares = [key for key, value in board.items() if value == ' ']
+
+    while True:
+        valid_choices = [str(num) for num in empty_squares]
+        prompt(f"Choose a square ({', '.join(valid_choices)}):")
+        square = int(input().strip())
+        if square in empty_squares:
+            break
+        else:
+            prompt("Sorry, that's not a valid choice.")
+    
     board[int(square)] = 'X'
 
 board = initialize_board()
