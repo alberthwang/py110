@@ -1,6 +1,6 @@
 
 
-def displayBoard(board):
+def display_board(board):
     print('')
     print('     |     |')
     print(f'  {board[1]}  |  {board[2]}  |   {board[3]}')
@@ -26,9 +26,8 @@ board = {1 : 'X',
          8 : ' ',
          9 : ' '}
 
-def initializeBoard():
+def initialize_board():
     return {square: ' ' for square in range(1,10)}
 
-board = initializeBoard()
-
-displayBoard(board)
+board = initialize_board()
+display_board(board)
