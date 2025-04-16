@@ -25,4 +25,10 @@ board = {1 : 'X',
          7 : ' ',
          8 : ' ',
          9 : ' '}
+
+def initializeBoard():
+    return {square: ' ' for square in range(1,10)}
+
+board = initializeBoard()
+
 displayBoard(board)
