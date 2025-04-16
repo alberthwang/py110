@@ -3,11 +3,11 @@
 def display_board(board):
     print('')
     print('     |     |')
-    print(f'  {board[1]}  |  {board[2]}  |   {board[3]}')
+    print(f'  {board[1]}  |  {board[2]}  |  {board[3]}')
     print('     |     |')
     print('-----+-----+-----')
     print('     |     |')
-    print(f'  {board[4]}  |  {board[5]}  |   {board[6]}')
+    print(f'  {board[4]}  |  {board[5]}  |  {board[6]}')
     print('     |     |')
     print('-----+-----+-----')
     print('     |     |')
@@ -29,5 +29,14 @@ board = {1 : 'X',
 def initialize_board():
     return {square: ' ' for square in range(1,10)}
 
+def prompt(message):
+    print(f'===> {message}')
+
+def player_chooses_square(board):
+    prompt('Choose a square (1-9):')
+    square = input()
+    board[int(square)] = 'X'
+
 board = initialize_board()
+player_chooses_square(board)
 display_board(board)
