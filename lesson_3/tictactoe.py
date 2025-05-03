@@ -1,4 +1,5 @@
-
+INITIAL_MARKER = ' '
+HUMAN_MARKER = 'X'
 
 def display_board(board):
     print('')
@@ -27,19 +28,21 @@ board = {1 : 'X',
          9 : ' '}
 
 def initialize_board():
-    return {square: ' ' for square in range(1,10)}
+    return {square: INITIAL_MARKER for square in range(1,10)}
 
 def prompt(message):
     print(f'===> {message}')
 
 def player_chooses_square(board):
     # valid spots would be in this list, if list at index = empty space
-    empty_squares = [key for key, value in board.items() if value == ' ']
+    empty_squares = [key 
+                     for key, value in board.items() 
+                     if value == INITIAL_MARKER]
 
     while True:
         valid_choices = [str(num) for num in empty_squares]
         prompt(f"Choose a square ({', '.join(valid_choices)}):")
-        square = int(input().strip())
+        square = input().strip()
         if square in valid_choices:
             break # break when choice is valid
         
