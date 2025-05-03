@@ -1,5 +1,9 @@
+import random
+
 INITIAL_MARKER = ' '
 HUMAN_MARKER = 'X'
+COMPUTER_MARKER = 'O'
+
 
 def display_board(board):
     print('')
@@ -48,7 +52,14 @@ def player_chooses_square(board):
         
         prompt("Sorry, that's not a valid choice.")
     
-    board[int(square)] = 'X'
+    board[int(square)] = HUMAN_MARKER
+
+def computer_chooses_square():
+    empty_squares = [key 
+                    for key, value in board.items()
+                    if value == INITIAL_MARKER]
+    square = random.choice(empty_squares)
+    board[square] = COMPUTER_MARKER
 
 board = initialize_board()
 player_chooses_square(board)
