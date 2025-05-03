@@ -40,10 +40,10 @@ def player_chooses_square(board):
         valid_choices = [str(num) for num in empty_squares]
         prompt(f"Choose a square ({', '.join(valid_choices)}):")
         square = int(input().strip())
-        if square in empty_squares:
-            break
-        else:
-            prompt("Sorry, that's not a valid choice.")
+        if square in valid_choices:
+            break # break when choice is valid
+        
+        prompt("Sorry, that's not a valid choice.")
     
     board[int(square)] = 'X'
 
