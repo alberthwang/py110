@@ -37,14 +37,18 @@ def initialize_board():
 def prompt(message):
     print(f'===> {message}')
 
+def empty_squares(board):
+    return [key for key, value in board.items() if value == INITIAL_MARKER]
+
+
 def player_chooses_square(board):
     # valid spots would be in this list, if list at index = empty space
-    empty_squares = [key 
-                     for key, value in board.items() 
-                     if value == INITIAL_MARKER]
+    # empty_squares = [key 
+    #                  for key, value in board.items() 
+    #                  if value == INITIAL_MARKER]
 
     while True:
-        valid_choices = [str(num) for num in empty_squares]
+        valid_choices = [str(num) for num in empty_squares(board)]
         prompt(f"Choose a square ({', '.join(valid_choices)}):")
         square = input().strip()
         if square in valid_choices:
@@ -54,11 +58,11 @@ def player_chooses_square(board):
     
     board[int(square)] = HUMAN_MARKER
 
-def computer_chooses_square():
-    empty_squares = [key 
-                    for key, value in board.items()
-                    if value == INITIAL_MARKER]
-    square = random.choice(empty_squares)
+def computer_chooses_square(board):
+    # empty_squares = [key 
+    #                 for key, value in board.items()
+    #                 if value == INITIAL_MARKER]
+    square = random.choice(empty_squares(board))
     board[square] = COMPUTER_MARKER
 
 board = initialize_board()
