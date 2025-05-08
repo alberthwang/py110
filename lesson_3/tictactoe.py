@@ -1,4 +1,5 @@
 import random
+import os
 
 INITIAL_MARKER = ' '
 HUMAN_MARKER = 'X'
@@ -6,6 +7,8 @@ COMPUTER_MARKER = 'O'
 
 
 def display_board(board):
+    os.system('cls')
+
     print('')
     print('     |     |')
     print(f'  {board[1]}  |  {board[2]}  |  {board[3]}')
