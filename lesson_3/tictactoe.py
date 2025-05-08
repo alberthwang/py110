@@ -40,6 +40,11 @@ def prompt(message):
 def empty_squares(board):
     return [key for key, value in board.items() if value == INITIAL_MARKER]
 
+def board_full(board):
+    return len(empty_squares(board)) == 0
+
+def someone_won(board):
+    return False
 
 def player_chooses_square(board):
     # valid spots would be in this list, if list at index = empty space
@@ -62,11 +67,10 @@ def computer_chooses_square(board):
     # empty_squares = [key 
     #                 for key, value in board.items()
     #                 if value == INITIAL_MARKER]
+    if board_full(board): return
     square = random.choice(empty_squares(board))
     board[square] = COMPUTER_MARKER
 
-def board_full(board):
-    return len(empty_squares(board)) == 0
 
 board = initialize_board()
 display_board(board)
