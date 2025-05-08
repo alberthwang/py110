@@ -66,5 +66,9 @@ def computer_chooses_square(board):
     board[square] = COMPUTER_MARKER
 
 board = initialize_board()
-player_chooses_square(board)
 display_board(board)
+
+while True:
+    player_chooses_square(board)
+    computer_chooses_square(board)
+    display_board(board)
