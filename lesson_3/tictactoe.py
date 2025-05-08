@@ -65,6 +65,9 @@ def computer_chooses_square(board):
     square = random.choice(empty_squares(board))
     board[square] = COMPUTER_MARKER
 
+def board_full(board):
+    return len(empty_squares(board)) == 0
+
 board = initialize_board()
 display_board(board)
 
@@ -72,3 +75,7 @@ while True:
     player_chooses_square(board)
     computer_chooses_square(board)
     display_board(board)
+
+    if someone_won(board) or board_full(board):
+        break
+    
