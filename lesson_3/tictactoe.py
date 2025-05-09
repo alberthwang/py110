@@ -9,7 +9,7 @@ COMPUTER_MARKER = 'O'
 def display_board(board):
     os.system('cls')
 
-    print('')
+    prompt(f"You are {HUMAN_MARKER}. Computer is {COMPUTER_MARKER}")
     print('     |     |')
     print(f'  {board[1]}  |  {board[2]}  |  {board[3]}')
     print('     |     |')
@@ -95,21 +95,32 @@ def computer_chooses_square(board):
     board[square] = COMPUTER_MARKER
 
 
-board = initialize_board()
+def play_tic_tac_toe():
+    while True:    
+        board = initialize_board()
 
-while True:
-    display_board(board)
+        while True:
+            display_board(board)
 
-    player_chooses_square(board)
-    if someone_won(board) or board_full(board):
-        break
+            player_chooses_square(board)
+            if someone_won(board) or board_full(board):
+                break
 
-    computer_chooses_square(board)
-    if someone_won(board) or board_full(board):
-        break
+            computer_chooses_square(board)
+            if someone_won(board) or board_full(board):
+                break
+            
+            display_board(board)
+        if someone_won(board):
+            prompt(f"{detect_winner(board)} won!")
+        else:
+            prompt("It's a tie!")
+        prompt("Play again? (y or n)")
+        answer = input().lower()
+        
+        if answer[0] != 'y':
+            break
 
-if someone_won(board):
-    prompt(f"{detect_winner(board)} won!")
-else:
-    prompt("It's a tie!")
-    
+    prompt("Thanks for playing Tic Tac Toe!")
+
+play_tic_tac_toe()
