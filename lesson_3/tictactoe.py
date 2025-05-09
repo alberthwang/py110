@@ -46,8 +46,28 @@ def empty_squares(board):
 def board_full(board):
     return len(empty_squares(board)) == 0
 
+def detect_winner(board):
+    winning_lines = [
+        [1, 2, 3], [4, 5, 6], [7, 8, 9], # rows
+        [1, 4, 7], [2, 5, 8], [3, 6, 9], # cols
+        [1, 5, 9], [3, 5, 7]             # diags
+    ]
+
+    for line in winning_lines:
+        sq1, sq2, sq3 = line
+        if(board[sq1] == HUMAN_MARKER
+           and board[sq2] == HUMAN_MARKER
+           and board[sq3] == HUMAN_MARKER):
+            return 'Player'
+        elif(board[sq1] == COMPUTER_MARKER
+             and board[sq2] == COMPUTER_MARKER
+             and board[sq3] == COMPUTER_MARKER):
+            return 'Computer'
+        
+    return None
+
 def someone_won(board):
-    return False
+    return bool(detect_winner(board))
 
 def player_chooses_square(board):
     # valid spots would be in this list, if list at index = empty space
@@ -85,4 +105,9 @@ while True:
 
     if someone_won(board) or board_full(board):
         break
+
+if someone_won(board):
+    prompt(f"{detect_winner(board)} won!")
+else:
+    prompt("It's a tie!")
     
