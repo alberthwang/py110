@@ -96,13 +96,15 @@ def computer_chooses_square(board):
 
 
 board = initialize_board()
-display_board(board)
 
 while True:
-    player_chooses_square(board)
-    computer_chooses_square(board)
     display_board(board)
 
+    player_chooses_square(board)
+    if someone_won(board) or board_full(board):
+        break
+
+    computer_chooses_square(board)
     if someone_won(board) or board_full(board):
         break
 
