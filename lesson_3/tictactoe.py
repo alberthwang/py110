@@ -40,6 +40,32 @@ def initialize_board():
 def prompt(message):
     print(f'===> {message}')
 
+def join_or(sequence, delimiter = ', ', joiner = 'or'):
+    # print(squares)
+    # joined_word = ''
+    # if len(squares) == 1:
+    #     return squares
+    # elif len(squares) == 2:
+    #     return str(squares[0]) + joiner + str(squares[1])
+    # else:
+    #     for i in range(0, len(squares) - 1):
+    #         joined_word += str(squares[i]) + seperator
+
+    #     joined_word += joiner + str(squares[len(squares)-1])
+    # return joined_word 
+    match len(sequence):
+        case 0:
+            return ''
+        case 1:
+            return str(sequence[0])
+        case 2:
+            return f'{sequence[0]} {joiner} {sequence[1]}'
+        
+    leading_items = delimiter.join(str(item) for item in sequence[0:-1])
+    return f"{leading_items}{delimiter}{joiner} {sequence[-1]}"
+
+
+
 def empty_squares(board):
     return [key for key, value in board.items() if value == INITIAL_MARKER]
 
@@ -69,6 +95,7 @@ def detect_winner(board):
 def someone_won(board):
     return bool(detect_winner(board))
 
+
 def player_chooses_square(board):
     # valid spots would be in this list, if list at index = empty space
     # empty_squares = [key 
@@ -77,7 +104,7 @@ def player_chooses_square(board):
 
     while True:
         valid_choices = [str(num) for num in empty_squares(board)]
-        prompt(f"Choose a square ({', '.join(valid_choices)}):")
+        prompt(f"Choose a square ({join_or(valid_choices)}):")
         square = input().strip()
         if square in valid_choices:
             break # break when choice is valid
