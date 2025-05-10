@@ -4,6 +4,7 @@ import os
 INITIAL_MARKER = ' '
 HUMAN_MARKER = 'X'
 COMPUTER_MARKER = 'O'
+GAMES_NEEDED_TO_WIN = 5
 
 
 def display_board(board):
@@ -123,6 +124,7 @@ def computer_chooses_square(board):
 
 
 def play_tic_tac_toe():
+    player_wins, computer_wins = 0
     while True:    
         board = initialize_board()
 
