@@ -4,6 +4,11 @@ import os
 INITIAL_MARKER = ' '
 HUMAN_MARKER = 'X'
 COMPUTER_MARKER = 'O'
+WINNING_LINES = [
+        [1, 2, 3], [4, 5, 6], [7, 8, 9], # rows
+        [1, 4, 7], [2, 5, 8], [3, 6, 9], # cols
+        [1, 5, 9], [3, 5, 7]             # diags
+    ]
 
 
 def display_board(board):
@@ -73,13 +78,8 @@ def board_full(board):
     return len(empty_squares(board)) == 0
 
 def detect_winner(board):
-    winning_lines = [
-        [1, 2, 3], [4, 5, 6], [7, 8, 9], # rows
-        [1, 4, 7], [2, 5, 8], [3, 6, 9], # cols
-        [1, 5, 9], [3, 5, 7]             # diags
-    ]
 
-    for line in winning_lines:
+    for line in WINNING_LINES:
         sq1, sq2, sq3 = line
         if(board[sq1] == HUMAN_MARKER
            and board[sq2] == HUMAN_MARKER
@@ -94,6 +94,15 @@ def detect_winner(board):
 
 def someone_won(board):
     return bool(detect_winner(board))
+
+def find_at_risk_square(line, board):
+    markers_in_line = [board[square] for square in line]
+
+    if markers_in_line.count(HUMAN_MARKER) == 2:
+        for square in line:
+            if board[square] == INITIAL_MARKER:
+                return square
+    return None
 
 
 def player_chooses_square(board):
@@ -118,7 +127,15 @@ def computer_chooses_square(board):
     #                 for key, value in board.items()
     #                 if value == INITIAL_MARKER]
     if board_full(board): return
-    square = random.choice(empty_squares(board))
+
+    square = None
+    for line in WINNING_LINES:
+        square = find_at_risk_square(line, board)
+        if square:
+            break
+    if not square:
+        square = random.choice(empty_squares(board))
+    
     board[square] = COMPUTER_MARKER
 
 
