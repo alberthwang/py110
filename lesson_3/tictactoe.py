@@ -99,9 +99,9 @@ def someone_won(board):
 def find_at_risk_square(board, line):
     markers_in_line = [board[square] for square in line]
     
-    if markers_in_line.count('X') == 2:
+    if markers_in_line.count(HUMAN_MARKER) == 2:
         for square in markers_in_line:
-            if board[square] == ' ':
+            if board[square] == INITIAL_MARKER:
                 return square
             
     return None
