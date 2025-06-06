@@ -131,17 +131,21 @@ def computer_chooses_square(board):
     if board_full(board): return
     
     square = None
-    #defensive move
-    for line in WINNING_LINES:
-        square = find_at_risk_square(board, line, HUMAN_MARKER)
-        if square:
-            break
-    
+    #offnsiv move
     if not square:
         for line in WINNING_LINES:
             square = find_at_risk_square(board, line, COMPUTER_MARKER)
             if square:
                 break
+    
+    #defensive move
+    if not square:
+        for line in WINNING_LINES:
+            square = find_at_risk_square(board, line, HUMAN_MARKER)
+            if square:
+                break
+    
+
         
     if not square:
         square = random.choice(empty_squares(board))
