@@ -145,7 +145,8 @@ def computer_chooses_square(board):
             if square:
                 break
     
-
+    if not square and board[5] is not INITIAL_MARKER:
+        square = 5
         
     if not square:
         square = random.choice(empty_squares(board))
