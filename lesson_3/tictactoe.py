@@ -5,6 +5,8 @@ INITIAL_MARKER = ' '
 HUMAN_MARKER = 'X'
 COMPUTER_MARKER = 'O'
 GAMES_NEEDED_TO_WIN = 5
+CENTER = 5
+FIRST_MOVE = False
 WINNING_LINES = [
         [1, 2, 3], [4, 5, 6], [7, 8, 9], # rows
         [1, 4, 7], [2, 5, 8], [3, 6, 9], # cols
@@ -145,7 +147,8 @@ def computer_chooses_square(board):
             if square:
                 break
     
-    if not square and board[5] is not INITIAL_MARKER:
+    #pick center square if not taken
+    if not square and board[CENTER] is INITIAL_MARKER:
         square = 5
         
     if not square:
@@ -153,6 +156,8 @@ def computer_chooses_square(board):
         
     board[int(square)] = COMPUTER_MARKER
 
+def make_move():
+    pass
 
 def play_tic_tac_toe():
     player_wins, computer_wins = 0, 0
@@ -165,15 +170,29 @@ def play_tic_tac_toe():
             while True:
                 display_board(board)
 
-                player_chooses_square(board)
-                if someone_won(board) or board_full(board):
-                    break
+                #determine who goes first
+                match(FIRST_MOVE):
+                    
+                    case True:    
+                        player_chooses_square(board)
+                        if someone_won(board) or board_full(board):
+                            break
 
-                computer_chooses_square(board)
-                if someone_won(board) or board_full(board):
-                    break
-                
+                        computer_chooses_square(board)
+                        if someone_won(board) or board_full(board):
+                            break
+                            
+                    case False:
+                        computer_chooses_square(board)
+                        if someone_won(board) or board_full(board):
+                            break
+
+                        player_chooses_square(board)
+                        if someone_won(board) or board_full(board):
+                            break
+                        #
                 display_board(board)
+                
             if someone_won(board):
                 prompt(f"{detect_winner(board)} won!")
                 if detect_winner(board) == 'Player':
@@ -183,7 +202,7 @@ def play_tic_tac_toe():
                     
             elif board_full(board):
                 prompt("It's a tie!")
-                
+                    
             # if player_wins == 5 or computer_wins == 5:
             #     break
                 
