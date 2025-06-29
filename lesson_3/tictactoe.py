@@ -149,12 +149,16 @@ def computer_chooses_square(board):
     
     #pick center square if not taken
     if not square and board[CENTER] is INITIAL_MARKER:
-        square = 5
+        square = CENTER
         
     if not square:
         square = random.choice(empty_squares(board))
         
     board[int(square)] = COMPUTER_MARKER
+
+def set_first_move():
+    while True:
+        move_selection = input('Do you want to go first? (y/n)')
 
 def make_move():
     pass
@@ -184,6 +188,7 @@ def play_tic_tac_toe():
                             
                     case False:
                         computer_chooses_square(board)
+                        display_board(board)
                         if someone_won(board) or board_full(board):
                             break
 
