@@ -158,13 +158,23 @@ def computer_chooses_square(board):
 
 def set_first_move():
     while True:
-        move_selection = input('Do you want to go first? (y/n)')
+        move_selection = input('Do you want to go first? (y/n)').strip()
+        if move_selection[0] in 'yY':
+            print('True')
+            return True
+        else:
+            return False
+            print('Flase')
+            
+        return
 
 def make_move():
     pass
 
 def play_tic_tac_toe():
     player_wins, computer_wins = 0, 0
+    FIRST_MOVE = set_first_move()
+    print(FIRST_MOVE, 'first move is ' )
     while True:    
 
         while player_wins < GAMES_NEEDED_TO_WIN and computer_wins < GAMES_NEEDED_TO_WIN:
