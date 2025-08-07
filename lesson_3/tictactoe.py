@@ -168,8 +168,15 @@ def set_first_move():
             
         return
 
-def make_move():
-    pass
+def choose_square(board, current_player):
+    if current_player:
+        player_chooses_square(board)
+    else:
+        computer_chooses_square(board)
+    return
+
+def alternate_player(player):
+    return not player
 
 def play_tic_tac_toe():
     player_wins, computer_wins = 0, 0
@@ -180,7 +187,7 @@ def play_tic_tac_toe():
         while player_wins < GAMES_NEEDED_TO_WIN and computer_wins < GAMES_NEEDED_TO_WIN:
             print(player_wins, computer_wins)
             board = initialize_board()
-
+            current_player = FIRST_MOVE
             while True:
                 display_board(board)
 
@@ -188,13 +195,16 @@ def play_tic_tac_toe():
                 match(FIRST_MOVE):
                     
                     case True:    
-                        player_chooses_square(board)
+                        choose_square(board, current_player)
+                        current_player = alternate_player(current_player)
+                        #player_chooses_square(board)
                         if someone_won(board) or board_full(board):
                             break
 
-                        computer_chooses_square(board)
-                        if someone_won(board) or board_full(board):
-                            break
+                        # computer_chooses_square(board)
+                        # if someone_won(board) or board_full(board):
+                        #     break
+                        
                             
                     case False:
                         computer_chooses_square(board)
