@@ -12,5 +12,13 @@ see who has closest to 21
 
 '''
 
+
+def initiate_deck():
+  value = [i for i in range(1,14)]
+  face = ['clubs', 'diamond' , 'heart', 'spade']
+  print(face, value)
+
 def play_game():
-  pass
+  deck = initiate_deck()
+
+play_game() 
