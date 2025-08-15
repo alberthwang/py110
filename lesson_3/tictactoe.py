@@ -192,30 +192,30 @@ def play_tic_tac_toe():
                 display_board(board)
 
                 #determine who goes first
-                match(FIRST_MOVE):
+                # match(FIRST_MOVE):
                     
-                    case True:    
-                        choose_square(board, current_player)
-                        current_player = alternate_player(current_player)
-                        #player_chooses_square(board)
-                        if someone_won(board) or board_full(board):
-                            break
+                #     case True:    
+                choose_square(board, current_player)
+                current_player = alternate_player(current_player)
+                #player_chooses_square(board)
+                if someone_won(board) or board_full(board):
+                    break
 
                         # computer_chooses_square(board)
                         # if someone_won(board) or board_full(board):
                         #     break
                         
                             
-                    case False:
-                        computer_chooses_square(board)
-                        display_board(board)
-                        if someone_won(board) or board_full(board):
-                            break
+                    # case False:
+                    #     computer_chooses_square(board)
+                    #     display_board(board)
+                    #     if someone_won(board) or board_full(board):
+                    #         break
 
-                        player_chooses_square(board)
-                        if someone_won(board) or board_full(board):
-                            break
-                        #
+                    #     player_chooses_square(board)
+                    #     if someone_won(board) or board_full(board):
+                    #         break
+                    #     #
                 display_board(board)
                 
             if someone_won(board):
