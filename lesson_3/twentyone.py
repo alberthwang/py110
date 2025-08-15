@@ -10,13 +10,25 @@ dealer hits until 17+
 see who has closest to 21
 
 
+1. initilize deck
+2. deal cards to play and human
+3. player turn:hit or stay
+4. if busts dealer wins
+5. dealer turn: hit or stay
+repeat until total >= 17
+6. if dealer bust, player wins
+7. compare cards and decide winner 
 '''
 
 
 def initiate_deck():
-  value = [i for i in range(1,14)]
-  face = ['clubs', 'diamond' , 'heart', 'spade']
-  print(face, value)
+  values = [i for i in range(1,14)]
+  suits = ['clubs', 'diamond' , 'heart', 'spade']
+  cards = [f"{suit}, {value}" for suit in suits for value in values]
+  #print(cards)
+  #deck = {i: [suits[(i- 1) // 13], (i % 13) + 1] for i in range(1,53)}
+  deck = {i+1 : card for i, card in enumerate(cards)}
+  print(deck)
 
 def play_game():
   deck = initiate_deck()
