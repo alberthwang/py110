@@ -20,6 +20,11 @@ repeat until total >= 17
 7. compare cards and decide winner 
 '''
 
+import random
+
+def shuffle(deck):
+    random.shuffle(deck)
+    
 
 def initiate_deck():
   values = [i for i in range(1,14)]
@@ -27,10 +32,18 @@ def initiate_deck():
   cards = [f"{suit}, {value}" for suit in suits for value in values]
   #print(cards)
   #deck = {i: [suits[(i- 1) // 13], (i % 13) + 1] for i in range(1,53)}
-  deck = {i+1 : card for i, card in enumerate(cards)}
-  print(deck)
+  deck = [[card] for card in cards]
+  #print(deck)
+  return deck
+  
+def draw_card(deck):
+  return deck.pop()
+
 
 def play_game():
   deck = initiate_deck()
+  shuffle(deck)
+  print(deck)
+  print(draw_card(deck))
 
 play_game() 
